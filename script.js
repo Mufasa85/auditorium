@@ -133,7 +133,7 @@ const ROOMS = [
     id: 16, slug: "eco-e", name: "Sc. Économiques — Salle E", faculty: "Sciences Économiques",
     filter: "eco", capacity: 140,
     status: "available",
-    image: "https://images.unsplash.com/photo-1547226706-bd69f88a5b04?w=600&q=80",
+    image: "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=600&q=80",
     description: "Petite salle pour les séminaires exclusifs et les cours à effectif réduit.",
     amenities: ["Configuration séminaire", "Écran 65 pouces"],
   },
