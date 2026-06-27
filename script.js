@@ -623,16 +623,39 @@ reservationForm.addEventListener('submit', function(e) {
     const duration = document.querySelector('input[name="duration"]:checked')?.value || '2h';
     const purpose = document.getElementById('resPurpose').value;
 
-    document.getElementById('modalTitle').textContent = '✅ Réservation confirmée !';
+    document.getElementById('modalTitle').textContent = 'Réservation confirmée !';
     document.getElementById('modalDesc').textContent = 'Votre auditoire a été réservé avec succès. Un email de confirmation vous sera envoyé dans quelques instants.';
     document.getElementById('modalDetails').innerHTML = `
       <div style="display:grid;gap:.5rem">
-        <div><strong>📍 Salle :</strong> ${room}</div>
-        <div><strong>📅 Date :</strong> ${formatDate(date)}</div>
-        <div><strong>🕐 Heure :</strong> ${time} (durée : ${duration})</div>
-        <div><strong>📝 Motif :</strong> ${purpose}</div>
+            <div class="booking-detail">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#0B5CFF" viewBox="0 0 24 24">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/>
+                </svg>
+                <strong>Salle :</strong> ${room}
+            </div>
+
+            <div class="booking-detail">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#0B5CFF" viewBox="0 0 24 24">
+                    <path d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 16H5V9h14z"/>
+                </svg>
+                <strong>Date :</strong> ${formatDate(date)}
+            </div>
+
+            <div class="booking-detail">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#0B5CFF" viewBox="0 0 24 24">
+                    <path d="M12 1a11 11 0 1 0 11 11A11 11 0 0 0 12 1zm1 11.41V6h-2v7h6v-2z"/>
+                </svg>
+                <strong>Heure :</strong> ${time} (Durée : ${duration})
+            </div>
+
+            <div class="booking-detail">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#0B5CFF" viewBox="0 0 24 24">
+                    <path d="M4 4h16v16H4zm2 2v12h12V6zm2 2h8v2H8zm0 4h8v2H8z"/>
+                </svg>
+                <strong>Motif :</strong> ${purpose}
+            </div>
         <div style="margin-top:.5rem;padding:.5rem;background:var(--blue-light);border-radius:6px;font-size:.75rem;color:var(--primary)">
-          🔑 Code de réservation : <strong>UPC-${Math.random().toString(36).substr(2, 8).toUpperCase()}</strong>
+           Code de réservation : <strong>UPC-${Math.random().toString(36).substr(2, 8).toUpperCase()}</strong>
         </div>
       </div>
     `;
@@ -708,13 +731,30 @@ registerForm.addEventListener('submit', function(e) {
     setLoadingState(btn, false);
     const firstname = document.getElementById('regFirstname').value;
     const lastname = document.getElementById('regLastname').value;
-    document.getElementById('modalTitle').textContent = '🎉 Compte créé !';
+    document.getElementById('modalTitle').textContent = 'Compte créé !';
     document.getElementById('modalDesc').textContent = `Bienvenue ${firstname} ${lastname} ! Votre compte UPC Réservations est maintenant actif. Vous pouvez commencer à réserver vos auditoires.`;
     document.getElementById('modalDetails').innerHTML = `
       <div style="display:grid;gap:.5rem">
-        <div><strong>👤 Nom :</strong> ${firstname} ${lastname}</div>
-        <div><strong>🎓 Faculté :</strong> ${document.getElementById('regFaculty').value}</div>
-        <div><strong>📧 Email :</strong> ${document.getElementById('regEmail').value}</div>
+            <div class="booking-detail">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#0B5CFF" viewBox="0 0 24 24">
+                    <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5z"/>
+                </svg>
+                <strong>Nom :</strong> ${firstname} ${lastname}
+            </div>
+
+            <div class="booking-detail">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#0B5CFF" viewBox="0 0 24 24">
+                    <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zm-7.2 8.8V16L12 20l7.2-4v-4.2L12 16l-7.2-4.2z"/>
+                </svg>
+                <strong>Faculté :</strong> ${document.getElementById('regFaculty').value}
+            </div>
+
+            <div class="booking-detail">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#0B5CFF" viewBox="0 0 24 24">
+                    <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5L4 8V6l8 5 8-5z"/>
+                </svg>
+                <strong>Email :</strong> ${document.getElementById('regEmail').value}
+            </div>
       </div>
     `;
     openModal('successModal');
@@ -737,7 +777,7 @@ contactForm.addEventListener('submit', function(e) {
 
   setTimeout(() => {
     setLoadingState(btn, false);
-    document.getElementById('modalTitle').textContent = '📩 Message envoyé !';
+    document.getElementById('modalTitle').textContent = ' Message envoyé !';
     document.getElementById('modalDesc').textContent = 'Votre message a bien été transmis à notre équipe. Nous vous répondrons dans un délai de 24 à 48 heures ouvrables.';
     document.getElementById('modalDetails').innerHTML = `
       <div><strong>Sujet :</strong> ${document.getElementById('ctSubject').value}</div>

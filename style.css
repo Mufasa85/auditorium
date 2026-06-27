@@ -1973,3 +1973,45 @@ body:hover .cursor, body:hover .cursor-follower { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+
+.booking-detail{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:14px;
+    color:#475569;
+    font-size:15px;
+}
+
+.booking-detail svg{
+    width:20px;
+    height:20px;
+    fill:#0B5CFF;
+    flex-shrink:0;
+}
+
+.booking-detail strong{
+    color:#0f172a;
+    margin-right:4px;
+}
+
+.booking-detail {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    color: #334155;
+    font-size: 15px;
+}
+
+.booking-detail svg {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    fill: #0B5CFF;
+}
+
+.booking-detail strong {
+    color: #0F172A;
+    margin-right: 4px;
+}
