@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UPC Réservations — Université Pédagogique du Congo</title>
+  <meta name="description" content="Système de réservation des auditoires de l'Université Pédagogique du Congo. Réservez facilement votre salle en quelques clics." />
+
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== CUSTOM CURSOR ===== -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- ===== LOADER ===== -->
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <div class="loader-logo">
+        <span class="loader-u">U</span><span class="loader-p">P</span><span class="loader-c">C</span>
+      </div>
+      <div class="loader-bar"><div class="loader-progress" id="loaderProgress"></div></div>
+      <p class="loader-text">Chargement en cours…</p>
+    </div>
+  </div>
+
+  <!-- ===== BACK TO TOP ===== -->
+  <button class="back-to-top" id="backToTop" aria-label="Retour en haut">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo">
+        <div class="logo-badge">UPC</div>
+        <div class="logo-text">
+          <span class="logo-main">UPC Réservations</span>
+          <span class="logo-sub">Université Pédagogique du Congo</span>
+        </div>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="nav-link active">Accueil</a></li>
+        <li><a href="#rooms" class="nav-link">Salles</a></li>
+        <li><a href="#register" class="nav-link">Créer son compte</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="#reservation" class="btn btn-primary btn-sm ripple">
+          <i class="fas fa-calendar-plus"></i> Réserver
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main>
+
+    <!-- ===================== SECTION HOME ===================== -->
+    <section class="hero" id="home">
+      <!-- Animated background shapes -->
+      <div class="hero-bg">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+        <div class="shape shape-5"></div>
+        <div class="particles" id="particles"></div>
+      </div>
+
+      <div class="hero-container">
+        <div class="hero-content" data-parallax="0.3">
+          <div class="hero-badge fade-in">
+            <i class="fas fa-university"></i>
+            <span>Plateforme officielle UPC</span>
+          </div>
+          <h1 class="hero-title fade-in">
+            Réservez votre<br />
+            <span class="gradient-text">auditoire</span> en<br />
+            quelques clics
+          </h1>
+          <p class="hero-desc fade-in">
+            Le système de réservation intelligent de l'Université Pédagogique du Congo. 
+            Gérez vos espaces académiques simplement, rapidement et efficacement.
+          </p>
+          <div class="hero-actions fade-in">
+            <a href="#reservation" class="btn btn-primary btn-lg ripple glow-btn">
+              <i class="fas fa-calendar-check"></i>
+              Réserver un auditoire
+            </a>
+            <a href="#rooms" class="btn btn-ghost btn-lg ripple">
+              <i class="fas fa-building"></i>
+              Découvrir les auditoires
+            </a>
+          </div>
+          <div class="hero-trust fade-in">
+            <div class="trust-avatars">
+              <img src="1" alt="user" />
+              <img src="2" alt="user" />
+              <img src="3" alt="user" />
+              <img src="4" alt="user" />
+            </div>
+            <span>+2 400 réservations effectuées ce semestre</span>
+          </div>
+        </div>
+
+        <div class="hero-visual fade-in">
+          <!-- Floating card 1 -->
+          <div class="float-card card-1">
+            <div class="fc-icon"><i class="fas fa-check-circle"></i></div>
+            <div class="fc-info">
+              <strong>Réservation confirmée</strong>
+              <span>L1 FASE · 09h00 – 11h00</span>
+            </div>
+          </div>
+          <!-- Floating card 2 -->
+          <div class="float-card card-2">
+            <div class="fc-icon orange"><i class="fas fa-users"></i></div>
+            <div class="fc-info">
+              <strong>Capacité disponible</strong>
+              <span>250 places libres</span>
+            </div>
+          </div>
+          <!-- Main visual -->
+          <div class="hero-img-wrapper">
+            <div class="hero-img-glow"></div>
+            <div class="hero-illustration">
+              <svg viewBox="0 0 520 400" fill="none" xmlns="http://www.w3.org/2000/svg" class="univ-svg">
+                <!-- Building base -->
+                <rect x="60" y="200" width="400" height="160" rx="4" fill="#EEF5FF"/>
+                <!-- Main structure -->
+                <rect x="100" y="130" width="320" height="230" rx="6" fill="#dbe9ff"/>
+                <!-- Columns -->
+                <rect x="120" y="180" width="20" height="180" rx="3" fill="#0B5CFF" opacity="0.2"/>
+                <rect x="160" y="180" width="20" height="180" rx="3" fill="#0B5CFF" opacity="0.2"/>
+                <rect x="200" y="180" width="20" height="180" rx="3" fill="#0B5CFF" opacity="0.2"/>
+                <rect x="280" y="180" width="20" height="180" rx="3" fill="#0B5CFF" opacity="0.2"/>
+                <rect x="320" y="180" width="20" height="180" rx="3" fill="#0B5CFF" opacity="0.2"/>
+                <rect x="360" y="180" width="20" height="180" rx="3" fill="#0B5CFF" opacity="0.2"/>
+                <!-- Pediment -->
+                <polygon points="80,130 260,60 440,130" fill="#0B5CFF" opacity="0.15"/>
+                <polygon points="100,130 260,70 420,130" fill="#0B5CFF" opacity="0.25"/>
+                <!-- Flag -->
+                <line x1="260" y1="60" x2="260" y2="20" stroke="#0B5CFF" stroke-width="2"/>
+                <rect x="262" y="20" width="30" height="20" rx="2" fill="#0B5CFF"/>
+                <!-- Windows -->
+                <rect x="130" y="210" width="40" height="50" rx="4" fill="white" opacity="0.8"/>
+                <rect x="190" y="210" width="40" height="50" rx="4" fill="white" opacity="0.8"/>
+                <rect x="290" y="210" width="40" height="50" rx="4" fill="white" opacity="0.8"/>
+                <rect x="350" y="210" width="40" height="50" rx="4" fill="white" opacity="0.8"/>
+                <!-- Main door -->
+                <rect x="220" y="290" width="80" height="70" rx="6" fill="#0B5CFF" opacity="0.3"/>
+                <rect x="235" y="305" width="20" height="55" rx="3" fill="white" opacity="0.7"/>
+                <rect x="265" y="305" width="20" height="55" rx="3" fill="white" opacity="0.7"/>
+                <!-- Steps -->
+                <rect x="180" y="355" width="160" height="8" rx="2" fill="#0B5CFF" opacity="0.2"/>
+                <rect x="160" y="362" width="200" height="8" rx="2" fill="#0B5CFF" opacity="0.15"/>
+                <!-- Trees -->
+                <ellipse cx="80" cy="290" rx="25" ry="35" fill="#10b981" opacity="0.4"/>
+                <rect x="76" y="310" width="8" height="50" fill="#6b7280" opacity="0.3"/>
+                <ellipse cx="440" cy="290" rx="25" ry="35" fill="#10b981" opacity="0.4"/>
+                <rect x="436" y="310" width="8" height="50" fill="#6b7280" opacity="0.3"/>
+                <!-- Ground -->
+                <rect x="0" y="358" width="520" height="42" rx="0" fill="#EEF5FF"/>
+                <!-- UPC Text on building -->
+                <text x="260" y="170" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700" font-size="18" fill="#0B5CFF" opacity="0.5">UPC</text>
+                <!-- Calendar icon on door -->
+                <rect x="236" y="220" width="18" height="18" rx="3" fill="#0B5CFF" opacity="0.5"/>
+                <line x1="239" y1="218" x2="239" y2="223" stroke="white" stroke-width="1.5"/>
+                <line x1="251" y1="218" x2="251" y2="223" stroke="white" stroke-width="1.5"/>
+                <line x1="236" y1="227" x2="254" y2="227" stroke="white" stroke-width="1"/>
+                <!-- Stars / lights -->
+                <circle cx="150" cy="100" r="2" fill="#0B5CFF" opacity="0.4" class="star"/>
+                <circle cx="370" cy="80" r="3" fill="#0B5CFF" opacity="0.3" class="star"/>
+                <circle cx="480" cy="150" r="2" fill="#0B5CFF" opacity="0.4" class="star"/>
+                <circle cx="30" cy="180" r="2.5" fill="#0B5CFF" opacity="0.3" class="star"/>
+              </svg>
+            </div>
+          </div>
+          <!-- Floating card 3 -->
+          <div class="float-card card-3">
+            <div class="fc-chart">
+              <div class="chart-bar" style="height:60%"></div>
+              <div class="chart-bar" style="height:80%"></div>
+              <div class="chart-bar" style="height:45%"></div>
+              <div class="chart-bar" style="height:90%"></div>
+              <div class="chart-bar" style="height:65%"></div>
+            </div>
+            <span>Taux d'occupation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wave divider -->
+      <div class="wave-divider">
+        <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#F8FAFC"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ===================== STATS SECTION ===================== -->
+    <section class="stats-section" id="stats">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item reveal-up">
+            <div class="stat-icon"><i class="fas fa-door-open"></i></div>
+            <div class="stat-number" data-target="18">0</div>
+            <div class="stat-label">Auditoires disponibles</div>
+          </div>
+          <div class="stat-item reveal-up" style="--delay:0.1s">
+            <div class="stat-icon"><i class="fas fa-users"></i></div>
+            <div class="stat-number" data-target="4800">0</div>
+            <div class="stat-label">Étudiants inscrits</div>
+          </div>
+          <div class="stat-item reveal-up" style="--delay:0.2s">
+            <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
+            <div class="stat-number" data-target="2400">0</div>
+            <div class="stat-label">Réservations ce semestre</div>
+          </div>
+          <div class="stat-item reveal-up" style="--delay:0.3s">
+            <div class="stat-icon"><i class="fas fa-star"></i></div>
+            <div class="stat-number" data-target="98">0</div>
+            <div class="stat-label">% de satisfaction</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ADVANTAGES SECTION ===================== -->
+    <section class="advantages" id="advantages">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <div class="section-badge">Pourquoi nous choisir</div>
+          <h2 class="section-title">Une expérience de réservation <span class="gradient-text">sans friction</span></h2>
+          <p class="section-desc">Conçu pour les étudiants, enseignants et administrations de l'UPC, notre plateforme simplifie la gestion des espaces académiques.</p>
+        </div>
+
+        <div class="adv-grid">
+          <div class="adv-card reveal-left">
+            <div class="adv-icon-wrap blue">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <h3>Réservation instantanée</h3>
+            <p>Confirmez votre salle en moins de 60 secondes depuis n'importe quel appareil, à tout moment.</p>
+          </div>
+          <div class="adv-card reveal-up" style="--delay:0.1s">
+            <div class="adv-icon-wrap purple">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Système sécurisé</h3>
+            <p>Authentification robuste et accès restreint par faculté et promotion pour éviter les conflits.</p>
+          </div>
+          <div class="adv-card reveal-right">
+            <div class="adv-icon-wrap green">
+              <i class="fas fa-bell"></i>
+            </div>
+            <h3>Notifications temps réel</h3>
+            <p>Recevez des confirmations et rappels instantanés pour ne jamais manquer votre créneau.</p>
+          </div>
+          <div class="adv-card reveal-left" style="--delay:0.15s">
+            <div class="adv-icon-wrap orange">
+              <i class="fas fa-calendar-alt"></i>
+            </div>
+            <h3>Calendrier intuitif</h3>
+            <p>Visualisez les disponibilités en temps réel et choisissez vos créneaux en un coup d'œil.</p>
+          </div>
+          <div class="adv-card reveal-up" style="--delay:0.2s">
+            <div class="adv-icon-wrap pink">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h3>100% Responsive</h3>
+            <p>Accessible sur mobile, tablette et ordinateur. Réservez où que vous soyez sur le campus.</p>
+          </div>
+          <div class="adv-card reveal-right" style="--delay:0.25s">
+            <div class="adv-icon-wrap teal">
+              <i class="fas fa-chart-bar"></i>
+            </div>
+            <h3>Tableau de bord</h3>
+            <p>Historique complet, statistiques d'utilisation et gestion centralisée pour l'administration.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== HOW IT WORKS ===================== -->
+    <section class="how-it-works" id="howItWorks">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <div class="section-badge">Processus simple</div>
+          <h2 class="section-title">Réserver en <span class="gradient-text">3 étapes</span></h2>
+          <p class="section-desc">Un processus pensé pour aller à l'essentiel, sans complexité inutile.</p>
+        </div>
+
+        <div class="steps-container">
+          <div class="step reveal-left">
+            <div class="step-number">01</div>
+            <div class="step-content">
+              <div class="step-icon"><i class="fas fa-user-plus"></i></div>
+              <h3>Créez votre compte</h3>
+              <p>Inscrivez-vous avec votre adresse universitaire et renseignez votre faculté et promotion. Accès immédiat.</p>
+            </div>
+            <div class="step-arrow"><i class="fas fa-arrow-right"></i></div>
+          </div>
+          <div class="step reveal-up" style="--delay:0.15s">
+            <div class="step-number">02</div>
+            <div class="step-content">
+              <div class="step-icon"><i class="fas fa-search"></i></div>
+              <h3>Choisissez votre salle</h3>
+              <p>Parcourez les auditoires disponibles, vérifiez les capacités et sélectionnez celui qui correspond à vos besoins.</p>
+            </div>
+            <div class="step-arrow"><i class="fas fa-arrow-right"></i></div>
+          </div>
+          <div class="step reveal-right" style="--delay:0.3s">
+            <div class="step-number">03</div>
+            <div class="step-content">
+              <div class="step-icon"><i class="fas fa-check-double"></i></div>
+              <h3>Confirmez la réservation</h3>
+              <p>Sélectionnez votre créneau, validez et recevez votre confirmation instantanément. C'est fait!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Wave -->
+      <div class="wave-divider wave-top">
+        <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M0,40 C360,0 1080,80 1440,40 L1440,80 L0,80 Z" fill="#EEF5FF"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ===================== ROOMS SECTION ===================== -->
+    <section class="rooms-section" id="rooms">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <div class="section-badge">Nos espaces</div>
+          <h2 class="section-title">Découvrez nos <span class="gradient-text">auditoires</span></h2>
+          <p class="section-desc">18 espaces modernes et équipés, répartis par faculté, à votre disposition.</p>
+        </div>
+
+        <!-- Filter tabs -->
+        <div class="filter-tabs reveal-up">
+          <button class="filter-btn active" data-filter="all">Tous</button>
+          <button class="filter-btn" data-filter="fase">FASE</button>
+          <button class="filter-btn" data-filter="droit">Droit</button>
+          <button class="filter-btn" data-filter="gestion">Sc. Gestion</button>
+          <button class="filter-btn" data-filter="eco">Sc. Économiques</button>
+          <button class="filter-btn" data-filter="info">Sc. Informatiques</button>
+        </div>
+
+        <div class="rooms-grid" id="roomsGrid">
+          <!-- Cards injected by JS -->
+        </div>
+      </div>
+      <div class="wave-divider">
+        <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#F8FAFC"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ===================== TESTIMONIALS ===================== -->
+    <section class="testimonials" id="testimonials">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <div class="section-badge">Témoignages</div>
+          <h2 class="section-title">Ce que disent nos <span class="gradient-text">utilisateurs</span></h2>
+        </div>
+        <div class="testi-grid">
+          <div class="testi-card reveal-left">
+            <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <p>"Incroyable ! Plus besoin de courir au secrétariat pour réserver une salle. Je fais tout depuis mon téléphone en 2 minutes."</p>
+            <div class="testi-author">
+              <img src="" alt="Jean-Pierre M." />
+              <div>
+                <strong>Winner.</strong>
+                <span>Délégué L3 FASE</span>
+              </div>
+            </div>
+          </div>
+          <div class="testi-card reveal-up" style="--delay:0.1s">
+            <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <p>"En tant qu'enseignante, gérer mes salles de cours est devenu un plaisir. L'interface est moderne et très intuitive."</p>
+            <div class="testi-author">
+              <img src="" alt="Prof. Célestine K." />
+              <div>
+                <strong>Prof. Céleste </strong>
+                <span>Département Sciences de Gestion</span>
+              </div>
+            </div>
+          </div>
+          <div class="testi-card reveal-right" style="--delay:0.2s">
+            <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+            <p>"La plateforme a révolutionné la gestion des espaces à l'UPC. Les conflits de salles ont quasiment disparu depuis son déploiement."</p>
+            <div class="testi-author">
+              <img src="" alt="Admin. David N." />
+              <div>
+                <strong>Mufasa.</strong>
+                <span>Service de la Scolarité UPC</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FAQ ===================== -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <div class="section-badge">FAQ</div>
+          <h2 class="section-title">Questions <span class="gradient-text">fréquentes</span></h2>
+        </div>
+        <div class="faq-list" id="faqList">
+          <!-- Injected by JS -->
+        </div>
+      </div>
+      <div class="wave-divider">
+        <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#EEF5FF"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ===================== RESERVATION SECTION ===================== -->
+    <section class="reservation-section" id="reservation">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <div class="section-badge">Réservation</div>
+          <h2 class="section-title">Réservez votre <span class="gradient-text">auditoire</span></h2>
+          <p class="section-desc">Remplissez le formulaire ci-dessous pour confirmer votre créneau.</p>
+        </div>
+
+        <div class="reservation-wrapper">
+          <div class="reservation-info reveal-left">
+            <h3>Informations utiles</h3>
+            <ul class="res-info-list">
+              <li><i class="fas fa-clock"></i> Réservations ouvertes 24h/24, 7j/7</li>
+              <li><i class="fas fa-hourglass-half"></i> Durée minimale : 1 heure</li>
+              <li><i class="fas fa-hourglass-end"></i> Durée maximale : 4 heures</li>
+              <li><i class="fas fa-ban"></i> Annulation jusqu'à 2h avant</li>
+              <li><i class="fas fa-id-card"></i> Carte étudiante requise sur place</li>
+            </ul>
+            <div class="res-notice glass-card">
+              <i class="fas fa-info-circle"></i>
+              <p>Toute réservation non honorée sans annulation préalable entraîne une suspension de 7 jours.</p>
+            </div>
+          </div>
+
+          <div class="reservation-form-card reveal-right">
+            <form class="reservation-form" id="reservationForm" novalidate>
+              <div class="form-group">
+                <label for="resRoom">Auditoire</label>
+                <div class="select-wrapper">
+                  <select id="resRoom" name="room" required>
+                    <option value="" disabled selected>Sélectionnez un auditoire</option>
+                    <option value="L1 FASE">L1 FASE</option>
+                    <option value="L2 FASE">L2 FASE</option>
+                    <option value="L3 FASE">L3 FASE</option>
+                    <option value="L1 Droit">L1 Droit</option>
+                    <option value="L2 Droit">L2 Droit</option>
+                    <option value="Gestion A">Sc. Gestion — Salle A</option>
+                    <option value="Gestion B">Sc. Gestion — Salle B</option>
+                    <option value="Gestion C">Sc. Gestion — Salle C</option>
+                    <option value="Gestion D">Sc. Gestion — Salle D</option>
+                    <option value="Gestion E">Sc. Gestion — Salle E</option>
+                    <option value="Gestion F">Sc. Gestion — Salle F</option>
+                    <option value="Eco A">Sc. Économiques — Salle A</option>
+                    <option value="Eco B">Sc. Économiques — Salle B</option>
+                    <option value="Eco C">Sc. Économiques — Salle C</option>
+                    <option value="Eco D">Sc. Économiques — Salle D</option>
+                    <option value="Eco E">Sc. Économiques — Salle E</option>
+                    <option value="Eco F">Sc. Économiques — Salle F</option>
+                    <option value="Info A">Sc. Informatiques — Salle A</option>
+                    <option value="Info B">Sc. Informatiques — Salle B</option>
+                  </select>
+                  <i class="fas fa-chevron-down select-arrow"></i>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="resDate">Date</label>
+                  <div class="input-icon-wrap">
+                    <i class="fas fa-calendar-alt"></i>
+                    <input type="date" id="resDate" name="date" required />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="resTime">Heure de début</label>
+                  <div class="input-icon-wrap">
+                    <i class="fas fa-clock"></i>
+                    <input type="time" id="resTime" name="time" required />
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Durée</label>
+                <div class="duration-options">
+                  <label class="dur-option">
+                    <input type="radio" name="duration" value="1h" /> <span>1h</span>
+                  </label>
+                  <label class="dur-option">
+                    <input type="radio" name="duration" value="2h" checked /> <span>2h</span>
+                  </label>
+                  <label class="dur-option">
+                    <input type="radio" name="duration" value="3h" /> <span>3h</span>
+                  </label>
+                  <label class="dur-option">
+                    <input type="radio" name="duration" value="4h" /> <span>4h</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="resPurpose">Motif de la réservation</label>
+                <div class="input-icon-wrap">
+                  <i class="fas fa-pen"></i>
+                  <input type="text" id="resPurpose" name="purpose" placeholder="Ex: Cours de mathématiques L2" required />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="resEmail">Votre email</label>
+                <div class="input-icon-wrap">
+                  <i class="fas fa-envelope"></i>
+                  <input type="email" id="resEmail" name="email" placeholder="prenom.nom@upc.cd" required />
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-full ripple glow-btn" id="resSubmitBtn">
+                <i class="fas fa-calendar-check"></i>
+                Confirmer la réservation
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== REGISTER SECTION ===================== -->
+    <section class="register-section" id="register">
+      <div class="register-bg">
+        <div class="shape shape-r1"></div>
+        <div class="shape shape-r2"></div>
+      </div>
+      <div class="container">
+        <div class="register-wrapper">
+          <div class="register-info reveal-left">
+            <div class="section-badge">Rejoignez-nous</div>
+            <h2 class="section-title">Créez votre <span class="gradient-text">compte</span> UPC</h2>
+            <p>Rejoignez la communauté UPC et accédez à votre espace de réservation personnel. C'est gratuit, instantané et sécurisé.</p>
+            <div class="register-perks">
+              <div class="perk"><i class="fas fa-check"></i> Accès instantané à tous les auditoires</div>
+              <div class="perk"><i class="fas fa-check"></i> Historique de vos réservations</div>
+              <div class="perk"><i class="fas fa-check"></i> Notifications par email</div>
+              <div class="perk"><i class="fas fa-check"></i> Interface personnalisée par faculté</div>
+            </div>
+          </div>
+
+          <div class="register-form-card reveal-right">
+            <h3>Créer un compte</h3>
+            <form class="register-form" id="registerForm" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="regFirstname">Prénom</label>
+                  <div class="input-icon-wrap">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="regFirstname" name="firstname" placeholder="Jean-Pierre" required />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="regLastname">Nom</label>
+                  <div class="input-icon-wrap">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="regLastname" name="lastname" placeholder="Mutombo" required />
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="regFaculty">Faculté</label>
+                  <div class="select-wrapper">
+                    <select id="regFaculty" name="faculty" required>
+                      <option value="" disabled selected>Sélectionnez</option>
+                      <option>FASE</option>
+                      <option>Droit</option>
+                      <option>Sciences de Gestion</option>
+                      <option>Sciences Économiques</option>
+                      <option>Sciences Informatiques</option>
+                    </select>
+                    <i class="fas fa-chevron-down select-arrow"></i>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="regPromo">Promotion</label>
+                  <div class="select-wrapper">
+                    <select id="regPromo" name="promo" required>
+                      <option value="" disabled selected>Sélectionnez</option>
+                      <option>L1</option>
+                      <option>L2</option>
+                      <option>L3</option>
+                      <option>Master 1</option>
+                      <option>Master 2</option>
+                      <option>Enseignant</option>
+                      <option>Administration</option>
+                    </select>
+                    <i class="fas fa-chevron-down select-arrow"></i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="regEmail">Email universitaire</label>
+                <div class="input-icon-wrap">
+                  <i class="fas fa-envelope"></i>
+                  <input type="email" id="regEmail" name="email" placeholder="prenom.nom@upc.cd" required />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="regPhone">Téléphone</label>
+                <div class="input-icon-wrap">
+                  <i class="fas fa-phone"></i>
+                  <input type="tel" id="regPhone" name="phone" placeholder="+243 8X XXX XXXX" required />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="regPassword">Mot de passe</label>
+                  <div class="input-icon-wrap">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="regPassword" name="password" placeholder="••••••••" required />
+                    <button type="button" class="toggle-pw" data-target="regPassword"><i class="fas fa-eye"></i></button>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="regConfirm">Confirmation</label>
+                  <div class="input-icon-wrap">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="regConfirm" name="confirm" placeholder="••••••••" required />
+                    <button type="button" class="toggle-pw" data-target="regConfirm"><i class="fas fa-eye"></i></button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Password strength -->
+              <div class="pw-strength" id="pwStrength">
+                <div class="pw-bar"><div class="pw-fill" id="pwFill"></div></div>
+                <span id="pwLabel">Force du mot de passe</span>
+              </div>
+
+              <div class="form-checkbox">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="regTerms" required />
+                  <span class="checkmark"></span>
+                  J'accepte les <a href="#">conditions d'utilisation</a> et la <a href="#">politique de confidentialité</a>
+                </label>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-full ripple glow-btn">
+                <i class="fas fa-user-plus"></i>
+                Créer mon compte
+              </button>
+
+              <p class="form-footer-text">Déjà un compte ? <a href="#reservation">Se connecter</a></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT SECTION ===================== -->
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <div class="section-badge">Contact</div>
+          <h2 class="section-title">Nous <span class="gradient-text">contacter</span></h2>
+          <p class="section-desc">Une question ? Notre équipe est disponible pour vous aider.</p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Contact info -->
+          <div class="contact-info reveal-left">
+            <div class="contact-info-card">
+              <div class="ci-item">
+                <div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <div>
+                  <strong>Adresse</strong>
+                  <p>Avenue Kasaï, n°10, Commune de Barumbu<br />Kinshasa, République Démocratique du Congo</p>
+                </div>
+              </div>
+              <div class="ci-item">
+                <div class="ci-icon"><i class="fas fa-envelope"></i></div>
+                <div>
+                  <strong>Email</strong>
+                  <p><a href="mailto:reservations@upc.cd">reservations@upc.cd</a></p>
+                  <p><a href="mailto:info@upc.cd">info@upc.cd</a></p>
+                </div>
+              </div>
+              <div class="ci-item">
+                <div class="ci-icon"><i class="fas fa-phone-alt"></i></div>
+                <div>
+                  <strong>Téléphone</strong>
+                  <p><a href="tel:+243812345678">+243 81 234 5678</a></p>
+                  <p><a href="tel:+243999012345">+243 99 901 2345</a></p>
+                </div>
+              </div>
+              <div class="ci-item">
+                <div class="ci-icon"><i class="fas fa-clock"></i></div>
+                <div>
+                  <strong>Heures d'ouverture</strong>
+                  <p>Lundi – Vendredi : 07h30 – 17h00</p>
+                  <p>Samedi : 08h00 – 12h00</p>
+                </div>
+              </div>
+
+              <!-- Social links -->
+              <div class="social-links">
+                <a href="#" class="social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-btn" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-btn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-btn" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="social-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+              </div>
+            </div>
+
+            <!-- Map placeholder -->
+            <div class="map-placeholder">
+              <div class="map-overlay">
+                <i class="fas fa-map-marker-alt map-pin"></i>
+                <span>UPC — Kinshasa, RDC</span>
+              </div>
+              <div class="map-grid">
+                <div class="mg-row"><div class="mg-cell road-h"></div><div class="mg-cell"></div><div class="mg-cell road-h"></div><div class="mg-cell"></div></div>
+                <div class="mg-row"><div class="mg-cell road-v"></div><div class="mg-cell bldg"></div><div class="mg-cell road-v"></div><div class="mg-cell bldg"></div></div>
+                <div class="mg-row"><div class="mg-cell road-h"></div><div class="mg-cell"></div><div class="mg-cell road-h"></div><div class="mg-cell"></div></div>
+                <div class="mg-row"><div class="mg-cell road-v"></div><div class="mg-cell bldg"></div><div class="mg-cell road-v"></div><div class="mg-cell bldg upc-bldg"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact form -->
+          <div class="contact-form-card reveal-right">
+            <h3>Envoyer un message</h3>
+            <form class="contact-form" id="contactForm" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="ctName">Nom complet</label>
+                  <div class="input-icon-wrap">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="ctName" name="name" placeholder="Jean-Pierre Mutombo" required />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="ctEmail">Email</label>
+                  <div class="input-icon-wrap">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="ctEmail" name="email" placeholder="votre@email.com" required />
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="ctSubject">Sujet</label>
+                <div class="input-icon-wrap">
+                  <i class="fas fa-tag"></i>
+                  <input type="text" id="ctSubject" name="subject" placeholder="Problème de réservation, demande d'information…" required />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="ctMessage">Message</label>
+                <div class="input-icon-wrap textarea-wrap">
+                  <i class="fas fa-comment-alt"></i>
+                  <textarea id="ctMessage" name="message" rows="5" placeholder="Décrivez votre demande en détail…" required></textarea>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary btn-full ripple glow-btn">
+                <i class="fas fa-paper-plane"></i>
+                Envoyer le message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer" id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <div class="logo-badge">UPC</div>
+              <div class="logo-text">
+                <span class="logo-main">UPC Réservations</span>
+                <span class="logo-sub">Système officiel</span>
+              </div>
+            </div>
+            <p>La plateforme intelligente de réservation des auditoires de l'Université Pédagogique du Congo. Simple, rapide, fiable.</p>
+            <div class="social-links">
+              <a href="#" class="social-btn sm" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social-btn sm" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-btn sm" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" class="social-btn sm" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h4>Navigation</h4>
+            <ul>
+              <li><a href="#home">Accueil</a></li>
+              <li><a href="#rooms">Auditoires</a></li>
+              <li><a href="#reservation">Réserver</a></li>
+              <li><a href="#register">Créer un compte</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Facultés</h4>
+            <ul>
+              <li><a href="#">FASE</a></li>
+              <li><a href="#">Droit</a></li>
+              <li><a href="#">Sciences de Gestion</a></li>
+              <li><a href="#">Sciences Économiques</a></li>
+              <li><a href="#">Sciences Informatiques</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Support</h4>
+            <ul>
+              <li><a href="#faq">FAQ</a></li>
+              <li><a href="#contact">Assistance</a></li>
+              <li><a href="#">Politique d'utilisation</a></li>
+              <li><a href="#">Confidentialité</a></li>
+              <li><a href="#">Mentions légales</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© 2025 Université Pédagogique du Congo · Tous droits réservés · Système de réservation des auditoires v1.0</p>
+        <p>Conçu avec <i class="fas fa-heart" style="color:#444fef"></i> pour l'UPC</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== SUCCESS MODAL ===== -->
+  <div class="modal-overlay" id="successModal">
+    <div class="modal-card success-modal">
+      <div class="modal-icon-wrap">
+        <div class="success-ring"></div>
+        <i class="fas fa-check modal-icon"></i>
+      </div>
+      <h3 id="modalTitle">Réservation confirmée !</h3>
+      <p id="modalDesc">Votre auditoire a été réservé avec succès. Un email de confirmation vous a été envoyé.</p>
+      <div class="modal-details" id="modalDetails"></div>
+      <button class="btn btn-primary ripple" onclick="closeModal('successModal')">
+        <i class="fas fa-check"></i> Parfait !
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== ROOM DETAIL MODAL ===== -->
+  <div class="modal-overlay" id="roomModal">
+    <div class="modal-card room-modal">
+      <button class="modal-close" onclick="closeModal('roomModal')"><i class="fas fa-times"></i></button>
+      <div id="roomModalContent"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
